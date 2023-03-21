@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;1,400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0e0d1e;
+        }
+
+        .logo {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 15px;
+            font-family: sans-serif;
+        }
+
+        .logo h1 span {
+            color: red;
+        }
+
+        .main h3 {
+            font-size: 2rem;
+            margin: 25px;
+            color: #fff;
+            font-family: cursive;
+        }
+        
+        .main h3 span:nth-child(1) {
+            color: red;
+        }
+        .main h3 span:nth-child(2) {
+            color: #ffc800;
+        }
+
+        /* #res {
+            display: none;
+        } */
+
+        .main {
+            display: flex;
+            /* position: absolute;
+            left: 50%;
+            top: 50%; */
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .convert {
+            display: flex;
+            /* flex-direction: colu; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .convert h4 {
+            padding: 15px;
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .convert input {
+            border-radius: 15px;
+            height: 2.5rem;
+            font-size: 1.1rem;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .main button {
+            border-radius: 10px;
+            padding: 5px 10px;
+            margin: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: black;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        #res {
+            font-size: 2rem;
+            color: #fff;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>
+                <span>T</span>emperature 
+                <span>C</span>onverter
+            </h1>
+        </div>
+    </header>
+    <section class="main">
+        <h3><span>T</span>emperature <span>C</span>onvert </h3>
+        <div class="convert">
+            <h4>Celcius : </h4>
+            <input type="number" id="input">
+        </div>
+        <button onclick="click()" type="submit">Submit</button>
+        <!-- <div id="res"> -->
+        <p id="res">Fahrenheit : <span id="rrs"></span> °F</p>
+        <!-- <p id="rrs"></p> -->
+        <!-- </div> -->
+    </section>
+
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener("click", () => {
+            let inp = document.getElementById('input').value;
+            let res = document.getElementById('res');
+            let rrs = document.getElementById('rrs');
+            if (inp == "") {
+                window.alert("Please enter a Number ...");
+                res.style.display = "none";
+            } else {
+                // let  = document.getElementById('res');
+                res.style.display = "block";
+                rrs.innerText = (inp * 1.8) + 32;
+            }
+        })
+    </script>
+    <!-- Code injected by live-server -->
+    <script type="text/javascript">
+        // <![CDATA[  <-- For SVG support
+        if ('WebSocket' in window) {
+            (function () {
+                function refreshCSS() {
+                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                    var head = document.getElementsByTagName("head")[0];
+                    for (var i = 0; i < sheets.length; ++i) {
+                        var elem = sheets[i];
+                        var parent = elem.parentElement || head;
+                        parent.removeChild(elem);
+                        var rel = elem.rel;
+                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                        }
+                        parent.appendChild(elem);
+                    }
+                }
+                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                var socket = new WebSocket(address);
+                socket.onmessage = function (msg) {
+                    if (msg.data == 'reload') window.location.reload();
+                    else if (msg.data == 'refreshcss') refreshCSS();
+                };
+                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log('Live reload enabled.');
+                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                }
+            })();
+        }
+        else {
+            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+        }
+	// ]]>
+    </script>
+</body>
+
+</html>
